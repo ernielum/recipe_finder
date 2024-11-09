@@ -51,7 +51,6 @@ function App() {
         <AddIngredient onAddIngredient={addIngredient} />
         <IngredientList ingredients={ingredients} onRemoveIngredient={removeIngredient} />
         <SearchButton onSearch={searchRecipes} />
-        <RecipeList recipes={recipes} />
       </main>
       <footer>
         <p>
