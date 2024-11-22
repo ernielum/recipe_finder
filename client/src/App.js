@@ -51,6 +51,11 @@ function App() {
         <AddIngredient onAddIngredient={addIngredient} />
         <IngredientList ingredients={ingredients} onRemoveIngredient={removeIngredient} />
         <SearchButton onSearch={searchRecipes} />
+        {recipes.length > 0 ? (
+          <RecipeList recipes={recipes} />
+        ) : (
+          <p>No recipes found. Please modify your ingredient list!</p>
+        )}
       </main>
       <footer>
         <p>
