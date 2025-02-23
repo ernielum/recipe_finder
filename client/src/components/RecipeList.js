@@ -1,12 +1,18 @@
 import React from 'react';
 
-function RecipeList({ recipes }) {
+function RecipeList({ recipes, onRecipeClick }) {
+    if (!recipes || recipes.length === 0) {
+        return <p>No recipes found. Please modify your ingredient list!</p>
+    }
+
     return (
         <div>
             <h2>Recipes</h2>
             <ul>
                 {recipes.map((recipe, index) => (
-                    <li key={index}>{recipe.title}</li>
+                    <div key={index} onClick={() => onRecipeClick(recipe.id)}>
+                        {recipe.title}
+                    </div>
                 ))}
             </ul>
         </div>

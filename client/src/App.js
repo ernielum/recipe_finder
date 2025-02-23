@@ -7,6 +7,8 @@ import AddIngredient from './components/AddIngredient';
 import IngredientList from './components/IngredientList';
 import SearchButton from './components/SearchButton.js';
 import RecipeList from './components/RecipeList';
+import RecipeDetails from './components/RecipeDetails';
+
 
 function App() {
   const [ingredients, setIngredients] = useState([]); // State to hold added ingredients
@@ -37,7 +39,17 @@ function App() {
     } catch (error) {
       console.error("Error fetching recipes:", error); // Handle errors
     }
-  }
+  };
+
+  // Function to handle recipe details
+  const handleRecipeClick = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/recipeDetails/${id}`);
+      setSelectedRecipe(response.data);
+    } catch (error) {
+    console.error("Error fetching recipe details:", error);
+    };
+  };
 
   return (
     <div>
@@ -51,11 +63,8 @@ function App() {
         <AddIngredient onAddIngredient={addIngredient} />
         <IngredientList ingredients={ingredients} onRemoveIngredient={removeIngredient} />
         <SearchButton onSearch={searchRecipes} />
-        {recipes.length > 0 ? (
-          <RecipeList recipes={recipes} />
-        ) : (
-          <p>No recipes found. Please modify your ingredient list!</p>
-        )}
+        <RecipeList recipes={recipes} onRecipeClick={handleRecipeClick} />
+        <RecipeDetails recipe={selectedRecipe} />
       </main>
       <footer>
         <p>

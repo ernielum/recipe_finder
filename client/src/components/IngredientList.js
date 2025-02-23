@@ -6,10 +6,10 @@ function IngredientList({ ingredients, onRemoveIngredient }) {
             <h3>Ingredients</h3>
             <ul>
                 {ingredients.map((ingredient, index) => (
-                    <li key={index}>
+                    <div key={index}>
                         {ingredient}
                         <button onClick={() => onRemoveIngredient(index)}>Remove</button>
-                    </li>
+                    </div>
                 ))}
             </ul>
         </div>
